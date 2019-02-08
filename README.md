@@ -71,3 +71,4 @@ track.getInfo
 ![alt text](./public/wireframes/Artist.jpg " Wireframe")
 ![alt text](./public/wireframes/Login.jpg "Login Wireframe")
 ![alt text](./public/wireframes/Playlist.jpg "Playlist Wireframe")
+![alt text](./public/wireframes/User.jpg "User Wireframe")
