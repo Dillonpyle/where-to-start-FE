@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import SearchResults from '../SearchResults'
+import AddArtist from '../AddArtist'
 
 class ArtistSearch extends Component {
 	constructor () {
@@ -8,10 +9,6 @@ class ArtistSearch extends Component {
 		this.state = {
 			searchArtist: '',
 			foundArtist: '',
-			mbid: '',
-			image: '',
-			description: '',
-			topAlbum: ''
 		}
 	}
 
@@ -21,9 +18,14 @@ class ArtistSearch extends Component {
 		})
 	}
 
+	addArtist = (e) => {
+		e.preventDefault()
+		console.log('add artist was called');
+	}
+
 	handleSubmit = async (e) => {
 		e.preventDefault()
-		console.log('handleSubmit was called');
+		//console.log('handleSubmit was called');
 
 		try {
 			const response = await fetch ('http://localhost:9000/api/v1/artist', {
@@ -49,7 +51,7 @@ class ArtistSearch extends Component {
 				topAlbum: parsedResponse.albums.topalbums.album[0].name,
 				topAlbumImg: parsedResponse.albums.topalbums.album[0].image[3]['#text'],
 				topTrack0: parsedResponse.tracks.toptracks.track[0].name,
-				topTrack6: parsedResponse.tracks.toptracks.track[6].name,
+				topTrack3: parsedResponse.tracks.toptracks.track[3].name,
 				topTrack10: parsedResponse.tracks.toptracks.track[10].name,
 				mbid: parsedResponse.info.artist.mbid,
 				image: parsedResponse.info.artist.image[3]['#text'],
@@ -73,6 +75,7 @@ class ArtistSearch extends Component {
 					</label>
 					<button type="Submit">Search Artist</button>
 				</form>
+				{this.state.foundArtist ? <AddArtist addArtist={this.addArtist}/> : null}
 				{this.state.foundArtist ? <SearchResults artist={this.state}/> : null}
 			</div>
 

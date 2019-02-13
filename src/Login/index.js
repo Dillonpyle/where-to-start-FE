@@ -7,6 +7,7 @@ class Login extends Component {
 		this.state = {
 			username: '',
 			password: '',
+			loggedIn: false,
 		}
 	}
 
@@ -14,6 +15,7 @@ class Login extends Component {
 		this.setState ({
 			[e.target.name]: e.target.value
 		})
+		
 	}
 
 	handleSubmit = async (e) => {
