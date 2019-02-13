@@ -25,7 +25,7 @@ class CreateArtistlist extends Component {
 
 
 	render () {
-		console.log(this.state);
+		//console.log(this.state);
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<input type="text" name="name" placeholder="Name of playlist..." value={this.state.name} onChange={this.handleChange}/>

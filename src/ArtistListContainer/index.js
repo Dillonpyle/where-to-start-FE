@@ -11,11 +11,24 @@ class ArtistListContainer extends Component {
 		}
 	}
 
-	addList = (name) => {
+	addList = async (listName) => {
+		console.log('addList was called with name', listName);
 
-		console.log('addList was called with name', name);
+		const newList = await fetch('http://localhost:9000/api/v1/artist-list', {
+	    method: "POST", // *GET, POST, PUT, DELETE, etc.
+	    headers: {
+	      "Content-Type": "application/json",
+	    },
+	    credentials: 'include',
+	    body: JSON.stringify({name: listName}), // body data type must match "Content-Type" header
+	  })
 
-		//
+	  if (!newList.ok) {
+				throw Error(newList.statusText)
+			}
+
+	  const newListParsed = await newList.json()
+	  console.log(newListParsed);
 	}
 
 
