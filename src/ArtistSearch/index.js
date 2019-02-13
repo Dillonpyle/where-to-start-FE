@@ -47,7 +47,7 @@ class ArtistSearch extends Component {
 			}
 
 			const parsedResponse = await response.json()
-			console.log(parsedResponse);
+			// console.log(parsedResponse);
 
 			this.setState({
 				showLists: true,
@@ -78,8 +78,8 @@ class ArtistSearch extends Component {
 				throw Error (response.statusText)
 			}
 
-			const parsedResponse = await response.json()
-			console.log(parsedResponse);
+			// const parsedResponse = await response.json()
+			// console.log(parsedResponse);
 
 			this.showLists()
 
@@ -108,11 +108,42 @@ class ArtistSearch extends Component {
 				throw Error (response.statusText)
 			}
 
-			const parsedResponse = await response.json()
-			console.log(parsedResponse);
+			// const parsedResponse = await response.json()
+			// console.log(parsedResponse);
 			
 			this.showLists()
 
+		} catch (err) {
+			console.log(err)
+		}
+	}
+
+	removeFromList = async (artistId, listId, e) => {
+		console.log('removeFromList was called');
+		// console.log(artistId);
+		// console.log(listId);
+		try {
+			const response = await fetch (`http://localhost:9000/api/v1/artist-list/${listId}/${artistId}/delete`, {
+				method: 'PUT',
+				headers: {
+					"Content-Type": "application/json",
+				},
+				credentials: 'include',
+				body: JSON.stringify(this.state)
+			})
+
+			if (!response.ok) {
+				throw Error (response.statusText)
+			}
+
+			const parsedResponse = await response.json()
+			console.log(parsedResponse);
+
+			this.showLists()
+
+
+
+			
 		} catch (err) {
 			console.log(err)
 		}
@@ -188,7 +219,7 @@ class ArtistSearch extends Component {
 					<button type="Submit">Search Artist</button>
 				</form>
 				{this.state.artistName ? <ShowLists showLists={this.showLists}/> : null}
-				{this.state.showLists ? <ArtistListDisplayModal lists={this.state.lists} deleteList={this.deleteList} addToList={this.addToList} closeModal={this.closeModal}/> : null}
+				{this.state.showLists ? <ArtistListDisplayModal lists={this.state.lists} deleteList={this.deleteList} addToList={this.addToList} removeFromList={this.removeFromList} closeModal={this.closeModal}/> : null}
 				{this.state.artistName ? <SearchResults artist={this.state}/> : null}
 			</div>
 
