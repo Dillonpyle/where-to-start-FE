@@ -5,9 +5,7 @@ class CreateArtistlist extends Component {
 		super ()
 
 		this.state = {
-			userId: '',
 			name: '',
-			artists: []
 		}
 	}
 
@@ -17,19 +15,21 @@ class CreateArtistlist extends Component {
 		})
 	}
 
-	addList = (e) => {
+	handleSubmit = (e) => {
 		e.preventDefault()
-		console.log('addList was called');
+		this.props.addList(this.state.name)
+		this.setState({
+			name: '',
+		})
 	}
-
 
 
 	render () {
 		console.log(this.state);
 		return (
-			<form onSubmit={this.addList}>
+			<form onSubmit={this.handleSubmit}>
 				<input type="text" name="name" placeholder="Name of playlist..." value={this.state.name} onChange={this.handleChange}/>
-				<button type="Submit">Add Playlist</button>
+				<button type="Submit">Create Artist List</button>
 			</form>
 
 

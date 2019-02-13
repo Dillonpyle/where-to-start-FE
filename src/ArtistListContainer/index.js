@@ -11,12 +11,19 @@ class ArtistListContainer extends Component {
 		}
 	}
 
+	addList = (name) => {
+
+		console.log('addList was called with name', name);
+
+		//
+	}
+
 
 
 	render () {
 		return (
 			<div>
-				<CreateArtistList />
+				<CreateArtistList addList={this.addList}/>
 			</div>
 
 
