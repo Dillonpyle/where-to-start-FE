@@ -41,9 +41,20 @@ class ArtistSearch extends Component {
 		})
 	}
 
-	addToList = async (e, listID) => {
+	addToList = async (id, e) => {
 		e.preventDefault()
 		console.log('add to list was called');
+
+		// push artist into list based on lists id
+
+
+	}
+
+	closeModal = () => {
+		console.log('closeModal was called');
+		this.setState ({
+			showLists: false
+		})
 	}
 
 	handleSubmit = async (e) => {
@@ -99,7 +110,7 @@ class ArtistSearch extends Component {
 					<button type="Submit">Search Artist</button>
 				</form>
 				{this.state.foundArtist ? <ShowLists showLists={this.showLists}/> : null}
-				{this.state.showLists ? <ArtistListDisplayModal lists={this.state.lists} addToList={this.addToList}/> : null}
+				{this.state.showLists ? <ArtistListDisplayModal lists={this.state.lists} addToList={this.addToList} closeModal={this.closeModal}/> : null}
 				{this.state.foundArtist ? <SearchResults artist={this.state}/> : null}
 			</div>
 

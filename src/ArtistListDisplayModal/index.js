@@ -6,8 +6,9 @@ const ArtistListDisplayModal = (props) => {
 	const allArtistLists = props.lists.map((list) => {
 		return (
 			<li key={list._id}>
-				<span>{list.name}</span>
-				<button onClick={props.addToList.bind(null, list._id)}>Add To List </button>
+				<span>{list.name}<button onClick={props.addToList.bind(null, list._id)}>Add To List </button></span>
+				<p>{list.artists.forEach((artist) => artist.name)}</p>
+				
 			</li>
 
 
@@ -20,9 +21,12 @@ const ArtistListDisplayModal = (props) => {
 
 
 	return (
-		<ul>
-			{allArtistLists}
-		</ul> 
+		<div>
+			<button onClick={props.closeModal.bind(null)}>X</button>
+			<ul>
+				{allArtistLists}
+			</ul> 
+		</div>
 
 	)
 }
