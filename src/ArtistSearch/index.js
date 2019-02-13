@@ -8,12 +8,23 @@ class ArtistSearch extends Component {
 		super ()
 
 		this.state = {
+			showLists: false,
+			lists: [],
 			searchArtist: '',
 			foundArtist: '',
-			showLists: false,
-			lists: []
+			mbid: '',
+			topAlbum: '',
+			topAlbumImg: '',
+			topTrack0: '',
+			topTrack3: '',
+			topTrack10: '',
+			image: '',
+			description: '',
+			similar: [],
+			tags: [],
 		}
 	}
+
 
 	handleChange = (e) => {
 		this.setState({
@@ -25,32 +36,59 @@ class ArtistSearch extends Component {
 		e.preventDefault()
 		console.log('showLists was called');
 
-		// need to call db for all lists and display them in modal
-		const response = await fetch ('http://localhost:9000/api/v1/artist-list')
+		try {
+			// need to call db for all lists and display them in modal
+			const response = await fetch ('http://localhost:9000/api/v1/artist-list')
 
-		if (!response.ok) {
-			throw Error (response.statusText)
+			if (!response.ok) {
+				throw Error (response.statusText)
+			}
+
+			const parsedResponse = await response.json()
+			console.log(parsedResponse);
+
+			this.setState({
+				showLists: true,
+				lists: [...parsedResponse.data]
+			})
+		} catch (err) {
+			console.log(err)
 		}
-
-		const parsedResponse = await response.json()
-		console.log(parsedResponse);
-
-		this.setState({
-			showLists: true,
-			lists: [...parsedResponse.data]
-		})
 	}
 
-	addToList = async (id, e) => {
+	addToList = async (listId, e) => {
 		e.preventDefault()
 		console.log('add to list was called');
 
 		// push artist into list based on lists id
+		//router.put('/:listId/:artistId', async (req, res) => {
+		try {
+			const response = await fetch (`http://localhost:9000/api/v1/artist-list/${listId}`, {
+				method: 'PUT',
+				headers: {
+					"Content-Type": "application/json",
+				},
+				credentials: 'include',
+				body: JSON.stringify(this.state)
+			})
+
+			if (!response.ok) {
+				throw Error (response.statusText)
+			}
+
+			const parsedResponse = await response.json()
+			console.log(parsedResponse);
+
+			
 
 
+
+		} catch (err) {
+			console.log(err)
+		}
 	}
 
-	closeModal = () => {
+	closeModal = (e) => {
 		console.log('closeModal was called');
 		this.setState ({
 			showLists: false
@@ -77,7 +115,15 @@ class ArtistSearch extends Component {
 
 			const parsedResponse = await response.json()
 			console.log(parsedResponse);
+
+			// remove embedded html from artist description
 			const description = parsedResponse.info.artist.bio.summary.split(' <a')[0]
+
+			// get names of similar artists
+			const similarNames = parsedResponse.info.artist.similar.artist.map((artist) => artist.name)
+			//console.log(similarNames);
+
+			const tags = parsedResponse.info.artist.tags.tag.map((tag) => tag.name)
 
 			this.setState({
 				searchArtist: '',
@@ -89,7 +135,9 @@ class ArtistSearch extends Component {
 				topTrack10: parsedResponse.tracks.toptracks.track[10].name,
 				mbid: parsedResponse.info.artist.mbid,
 				image: parsedResponse.info.artist.image[3]['#text'],
-				description: description
+				description: description,
+				similar: [...similarNames],
+				tags: [...tags]
 			})
 
 			
@@ -99,7 +147,7 @@ class ArtistSearch extends Component {
 	}
 
 	render () {
-		//console.log(this.state);
+		console.log(this.state);
 		return (
 			<div>
 				<form onSubmit={this.handleSubmit}>
