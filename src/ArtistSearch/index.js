@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import SearchResults from '../SearchResults'
 
 class ArtistSearch extends Component {
 	constructor () {
@@ -9,7 +10,9 @@ class ArtistSearch extends Component {
 			foundArtist: '',
 			mbid: '',
 			image: '',
-			description: ''		
+			description: '',
+			topAlbum: '',
+			topTrack: '',	
 		}
 	}
 
@@ -42,10 +45,14 @@ class ArtistSearch extends Component {
 
 			this.setState({
 				searchArtist: '',
-				foundArtist: parsedResponse.data.artist.name,
-				mbid: parsedResponse.data.artist.mbid,
-				image: parsedResponse.data.artist.image[3]['#text'],
-				description: parsedResponse.data.artist.bio.summary
+				foundArtist: parsedResponse.info.artist.name,
+				topAlbum: parsedResponse.albums.topalbums.album[0].name,
+				topAlbumImg: parsedResponse.albums.topalbums.album[0].image[3]['#text'],
+				topTrack: parsedResponse.tracks.toptracks.track[3].name,
+				topTrackImg: parsedResponse.tracks.toptracks.track[3].image[3]['#text'],
+				mbid: parsedResponse.info.artist.mbid,
+				image: parsedResponse.info.artist.image[3]['#text'],
+				description: parsedResponse.info.artist.bio.summary
 			})
 
 			
@@ -55,16 +62,17 @@ class ArtistSearch extends Component {
 	}
 
 	render () {
-		console.log(this.state);
+		//console.log(this.state);
 		return (
 			<div>
 				<form onSubmit={this.handleSubmit}>
 					<label>
 						Artist:
-						<input name="searchArtist" value={this.state.searchArtist} onChange={this.handleChange} />
+						<input name="searchArtist" placeholder='search an artist' value={this.state.searchArtist} onChange={this.handleChange} />
 					</label>
 					<button type="Submit">Search Artist</button>
 				</form>
+				<SearchResults artist={this.state}/>
 			</div>
 
 		)
