@@ -11,8 +11,7 @@ class ArtistSearch extends Component {
 			mbid: '',
 			image: '',
 			description: '',
-			topAlbum: '',
-			topTrack: '',	
+			topAlbum: ''
 		}
 	}
 
@@ -42,17 +41,19 @@ class ArtistSearch extends Component {
 
 			const parsedResponse = await response.json()
 			console.log(parsedResponse);
+			const description = parsedResponse.info.artist.bio.summary.split(' <a')[0]
 
 			this.setState({
 				searchArtist: '',
 				foundArtist: parsedResponse.info.artist.name,
 				topAlbum: parsedResponse.albums.topalbums.album[0].name,
 				topAlbumImg: parsedResponse.albums.topalbums.album[0].image[3]['#text'],
-				topTrack: parsedResponse.tracks.toptracks.track[3].name,
-				topTrackImg: parsedResponse.tracks.toptracks.track[3].image[3]['#text'],
+				topTrack0: parsedResponse.tracks.toptracks.track[0].name,
+				topTrack6: parsedResponse.tracks.toptracks.track[6].name,
+				topTrack10: parsedResponse.tracks.toptracks.track[10].name,
 				mbid: parsedResponse.info.artist.mbid,
 				image: parsedResponse.info.artist.image[3]['#text'],
-				description: parsedResponse.info.artist.bio.summary
+				description: description
 			})
 
 			
@@ -72,7 +73,7 @@ class ArtistSearch extends Component {
 					</label>
 					<button type="Submit">Search Artist</button>
 				</form>
-				<SearchResults artist={this.state}/>
+				{this.state.foundArtist ? <SearchResults artist={this.state}/> : null}
 			</div>
 
 		)
