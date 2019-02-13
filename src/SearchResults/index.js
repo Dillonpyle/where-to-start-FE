@@ -4,7 +4,7 @@ const SearchResults = (props) => {
 	//console.log(props);
 	return (
 		<div>
-			<h1>{props.artist.foundArtist}</h1>
+			<h1>{props.artist.artistName}</h1>
 			<img alt="Artist" src={props.artist.image} />
 			<p>{props.artist.description}</p>
 			<h2>Start with this Album:<br /> {props.artist.topAlbum}</h2>

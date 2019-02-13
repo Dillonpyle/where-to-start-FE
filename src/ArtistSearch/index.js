@@ -11,7 +11,7 @@ class ArtistSearch extends Component {
 			showLists: false,
 			lists: [],
 			searchArtist: '',
-			foundArtist: '',
+			artistName: '',
 			mbid: '',
 			topAlbum: '',
 			topAlbumImg: '',
@@ -33,7 +33,9 @@ class ArtistSearch extends Component {
 	}
 
 	showLists = async (e) => {
-		e.preventDefault()
+		if (e) {
+			e.preventDefault()
+		}
 		console.log('showLists was called');
 
 		try {
@@ -79,7 +81,7 @@ class ArtistSearch extends Component {
 			const parsedResponse = await response.json()
 			console.log(parsedResponse);
 
-			
+			this.showLists()
 
 
 
@@ -127,7 +129,7 @@ class ArtistSearch extends Component {
 
 			this.setState({
 				searchArtist: '',
-				foundArtist: parsedResponse.info.artist.name,
+				artistName: parsedResponse.info.artist.name,
 				topAlbum: parsedResponse.albums.topalbums.album[0].name,
 				topAlbumImg: parsedResponse.albums.topalbums.album[0].image[3]['#text'],
 				topTrack0: parsedResponse.tracks.toptracks.track[0].name,
@@ -147,7 +149,7 @@ class ArtistSearch extends Component {
 	}
 
 	render () {
-		console.log(this.state);
+		//console.log(this.state);
 		return (
 			<div>
 				<form onSubmit={this.handleSubmit}>
@@ -157,9 +159,9 @@ class ArtistSearch extends Component {
 					</label>
 					<button type="Submit">Search Artist</button>
 				</form>
-				{this.state.foundArtist ? <ShowLists showLists={this.showLists}/> : null}
+				{this.state.artistName ? <ShowLists showLists={this.showLists}/> : null}
 				{this.state.showLists ? <ArtistListDisplayModal lists={this.state.lists} addToList={this.addToList} closeModal={this.closeModal}/> : null}
-				{this.state.foundArtist ? <SearchResults artist={this.state}/> : null}
+				{this.state.artistName ? <SearchResults artist={this.state}/> : null}
 			</div>
 
 		)

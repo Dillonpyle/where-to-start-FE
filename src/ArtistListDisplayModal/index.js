@@ -4,10 +4,11 @@ const ArtistListDisplayModal = (props) => {
 	console.log(props);
 
 	const allArtistLists = props.lists.map((list) => {
+		console.log(list);
 		return (
 			<li key={list._id}>
 				<span>{list.name}<button onClick={props.addToList.bind(null, list._id)}>Add To List </button></span>
-				<p>{list.artists.forEach((artist) => artist.name)}</p>
+				{list.artists.map((artist) => <p key={artist.mbid}>{artist.artistName}</p>)}
 				
 			</li>
 
