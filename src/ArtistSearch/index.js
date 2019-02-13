@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import SearchResults from '../SearchResults'
 import ShowLists from '../ShowLists'
 import ArtistListDisplayModal from '../ArtistListDisplayModal'
+// import Login from '../Login'
+// import Register from '../Register'
+import CreateNewList from '../CreateNewList'
 
 class ArtistSearch extends Component {
 	constructor () {
@@ -218,6 +221,7 @@ class ArtistSearch extends Component {
 					</label>
 					<button type="Submit">Search Artist</button>
 				</form>
+				<CreateNewList />
 				{this.state.artistName ? <ShowLists showLists={this.showLists}/> : null}
 				{this.state.showLists ? <ArtistListDisplayModal lists={this.state.lists} deleteList={this.deleteList} addToList={this.addToList} removeFromList={this.removeFromList} closeModal={this.closeModal}/> : null}
 				{this.state.artistName ? <SearchResults artist={this.state}/> : null}
