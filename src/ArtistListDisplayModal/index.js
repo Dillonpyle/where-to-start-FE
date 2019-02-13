@@ -1,15 +1,16 @@
 import React from 'react'
 
 const ArtistListDisplayModal = (props) => {
-	console.log(props);
 
 	const allArtistLists = props.lists.map((list) => {
 		console.log(list);
 		return (
 			<li key={list._id}>
-				<span>{list.name}<button onClick={props.addToList.bind(null, list._id)}>Add To List </button></span>
-				{list.artists.map((artist) => <p key={artist.mbid}>{artist.artistName}</p>)}
-				
+				<span>{list.name}
+					<button onClick={props.addToList.bind(null, list._id)}>Add To List</button>
+					<button onClick={props.deleteList.bind(null, list._id)}>Delete List</button>
+				</span>
+				{list.artists.map((artist) => <p key={artist.mbid}>{artist.artistName}</p>)}		
 			</li>
 
 

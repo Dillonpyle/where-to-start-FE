@@ -8,7 +8,6 @@ class CreateNewList extends Component {
 
 		this.state = {
 			user: '',
-			lists: [],
 			displayModal: false,
 			listName: '',
 			userId: '',
@@ -24,7 +23,7 @@ class CreateNewList extends Component {
 	addList = async (e) => {
 		e.preventDefault()
 
-		console.log('addList was called with name', this.state.listName);
+		//console.log('addList was called with name', this.state.listName);
 
 		const newList = await fetch('http://localhost:9000/api/v1/artist-list', {
 	    method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -39,8 +38,12 @@ class CreateNewList extends Component {
 				throw Error(newList.statusText)
 			}
 
-	  const newListParsed = await newList.json()
-	  console.log(newListParsed);
+	  //const newListParsed = await newList.json()
+	  //console.log(newListParsed);
+
+	  this.setState({
+	  	listName: ''
+	  })
 	}
 
 

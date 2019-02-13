@@ -5,11 +5,9 @@ const ShowLists = (props) => {
 	
 	return (
 		<form onSubmit={props.showLists}>
-			<button>Add Artist to a Playlist</button>
+			<button>Show Your Lists</button>
 		</form>
-
-	)
-	
+	)	
 }
 
 export default ShowLists
