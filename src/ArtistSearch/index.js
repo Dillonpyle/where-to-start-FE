@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SearchResults from '../SearchResults'
-import AddArtist from '../AddArtist'
+import ShowLists from '../ShowLists'
+import ArtistListDisplayModal from '../ArtistListDisplayModal'
 
 class ArtistSearch extends Component {
 	constructor () {
@@ -9,6 +10,8 @@ class ArtistSearch extends Component {
 		this.state = {
 			searchArtist: '',
 			foundArtist: '',
+			showLists: false,
+			lists: []
 		}
 	}
 
@@ -18,9 +21,29 @@ class ArtistSearch extends Component {
 		})
 	}
 
-	addArtist = (e) => {
+	showLists = async (e) => {
 		e.preventDefault()
-		console.log('add artist was called');
+		console.log('showLists was called');
+
+		// need to call db for all lists and display them in modal
+		const response = await fetch ('http://localhost:9000/api/v1/artist-list')
+
+		if (!response.ok) {
+			throw Error (response.statusText)
+		}
+
+		const parsedResponse = await response.json()
+		console.log(parsedResponse);
+
+		this.setState({
+			showLists: true,
+			lists: [...parsedResponse.data]
+		})
+	}
+
+	addToList = async (e, listID) => {
+		e.preventDefault()
+		console.log('add to list was called');
 	}
 
 	handleSubmit = async (e) => {
@@ -75,7 +98,8 @@ class ArtistSearch extends Component {
 					</label>
 					<button type="Submit">Search Artist</button>
 				</form>
-				{this.state.foundArtist ? <AddArtist addArtist={this.addArtist}/> : null}
+				{this.state.foundArtist ? <ShowLists showLists={this.showLists}/> : null}
+				{this.state.showLists ? <ArtistListDisplayModal lists={this.state.lists} addToList={this.addToList}/> : null}
 				{this.state.foundArtist ? <SearchResults artist={this.state}/> : null}
 			</div>
 
