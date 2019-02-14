@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Search from '../Search'
 import SearchResults from '../SearchResults'
 import ShowLists from '../ShowLists'
 import ArtistListDisplayModal from '../ArtistListDisplayModal'
@@ -6,7 +7,7 @@ import ArtistListDisplayModal from '../ArtistListDisplayModal'
 // import Register from '../Register'
 import CreateNewList from '../CreateNewList'
 
-class ArtistSearch extends Component {
+class MainDisplay extends Component {
 	constructor () {
 		super ()
 
@@ -26,13 +27,6 @@ class ArtistSearch extends Component {
 			similar: [],
 			tags: [],
 		}
-	}
-
-
-	handleChange = (e) => {
-		this.setState({
-			[e.target.name]: e.target.value
-		})
 	}
 
 	showLists = async (e) => {
@@ -143,9 +137,6 @@ class ArtistSearch extends Component {
 			console.log(parsedResponse);
 
 			this.showLists()
-
-
-
 			
 		} catch (err) {
 			console.log(err)
@@ -159,9 +150,10 @@ class ArtistSearch extends Component {
 		})
 	}
 
-	handleSubmit = async (e) => {
+	searchArtist = async (query, e) => {
 		e.preventDefault()
-		//console.log('handleSubmit was called');
+		console.log('searchArtist was called');
+		console.log(query);
 
 		try {
 			const response = await fetch ('http://localhost:9000/api/v1/artist', {
@@ -170,7 +162,7 @@ class ArtistSearch extends Component {
 					"Content-Type": "application/json",
 				},
 				credentials: 'include',
-				body: JSON.stringify(this.state)
+				body: JSON.stringify({artist: query})
 			})
 
 			if (!response.ok) {
@@ -214,13 +206,7 @@ class ArtistSearch extends Component {
 		//console.log(this.state);
 		return (
 			<div>
-				<form onSubmit={this.handleSubmit}>
-					<label>
-						Artist:
-						<input name="searchArtist" placeholder='search an artist' value={this.state.searchArtist} onChange={this.handleChange} />
-					</label>
-					<button type="Submit">Search Artist</button>
-				</form>
+				<Search searchArtist={this.searchArtist}/>
 				{this.props.userInfo.loggedIn ? <CreateNewList /> : null}
 				{this.props.userInfo.loggedIn ? <ShowLists showLists={this.showLists}/> : null}
 				{this.state.showLists ? <ArtistListDisplayModal lists={this.state.lists} deleteList={this.deleteList} addToList={this.addToList} removeFromList={this.removeFromList} closeModal={this.closeModal}/> : null}
@@ -231,4 +217,4 @@ class ArtistSearch extends Component {
 	}
 }
 
-export default ArtistSearch
+export default MainDisplay

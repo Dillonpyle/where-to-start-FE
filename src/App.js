@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Login from './Login'
 import Register from './Register'
-import ArtistSearch from './ArtistSearch'
+import MainDisplay from './MainDisplay'
 // import CreateNewList from './CreateNewList'
 // import AuthContainer from './AuthContainer'
 
@@ -15,7 +15,8 @@ class App extends Component {
       loggedIn: false,
       username: '',
       showLogin: false,
-      showRegister: false
+      showRegister: false,
+      message: ''
     }
   }
 
@@ -67,7 +68,7 @@ class App extends Component {
         <button onClick={this.toggleRegister.bind(null)}>Register</button>
         {this.state.showLogin ? <Login login={this.login}/> : null}
         {this.state.showRegister ? <Register login={this.login}/> : null}
-        <ArtistSearch userInfo={this.state} />
+        <MainDisplay userInfo={this.state} />
       </div>
     );
   }
