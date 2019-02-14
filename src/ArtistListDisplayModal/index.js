@@ -2,7 +2,7 @@ import React from 'react'
 import CreateNewList from '../CreateNewList'
 
 const ArtistListDisplayModal = (props) => {
-	console.log(props);
+	//console.log(props);
 	const allArtistLists = props.lists.map((list) => {
 		//console.log(list);
 		return (		
@@ -23,7 +23,7 @@ const ArtistListDisplayModal = (props) => {
 	return (
 		<div>
 			<button onClick={props.closeModal.bind(null)}>X</button>
-			{props.userInfo.loggedIn ? <CreateNewList showLists={props.showLists}/> : null}
+			{props.userInfo.loggedIn ? <CreateNewList showLists={props.showLists} userInfo={props.userInfo}/> : null}
 			<ul>
 				{allArtistLists}
 			</ul> 

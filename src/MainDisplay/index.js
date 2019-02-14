@@ -33,7 +33,7 @@ class MainDisplay extends Component {
 		if (e) {
 			e.preventDefault()
 		}
-		console.log('showLists was called');
+		//console.log('showLists was called');
 
 		try {
 			// need to call db for all lists and display them in modal
@@ -44,7 +44,7 @@ class MainDisplay extends Component {
 			}
 
 			const parsedResponse = await response.json()
-			// console.log(parsedResponse);
+			console.log(parsedResponse);
 
 			this.setState({
 				showLists: true,
@@ -57,7 +57,7 @@ class MainDisplay extends Component {
 
 	addToList = async (listId, e) => {
 		e.preventDefault()
-		console.log('add to list was called');
+		//console.log('add to list was called');
 
 		// push artist into list based on lists id
 		//router.put('/:listId/:artistId', async (req, res) => {
@@ -89,7 +89,7 @@ class MainDisplay extends Component {
 
 	deleteList = async (listId, e) => {
 		e.preventDefault()
-		console.log('deleteList was called');
+		//console.log('deleteList was called');
 
 		try {
 			const response = await fetch (`http://localhost:9000/api/v1/artist-list/${listId}`, {
@@ -116,7 +116,7 @@ class MainDisplay extends Component {
 	}
 
 	removeFromList = async (artistId, listId, e) => {
-		console.log('removeFromList was called');
+		//console.log('removeFromList was called');
 		// console.log(artistId);
 		// console.log(listId);
 		try {
@@ -134,7 +134,7 @@ class MainDisplay extends Component {
 			}
 
 			const parsedResponse = await response.json()
-			console.log(parsedResponse);
+			//console.log(parsedResponse);
 
 			this.showLists()
 			
@@ -144,7 +144,7 @@ class MainDisplay extends Component {
 	}
 
 	closeModal = (e) => {
-		console.log('closeModal was called');
+		//console.log('closeModal was called');
 		this.setState ({
 			showLists: false
 		})
@@ -152,8 +152,8 @@ class MainDisplay extends Component {
 
 	searchArtist = async (query, e) => {
 		e.preventDefault()
-		console.log('searchArtist was called');
-		console.log(query);
+		//console.log('searchArtist was called');
+		//console.log(query);
 
 		try {
 			const response = await fetch ('http://localhost:9000/api/v1/artist', {
@@ -170,7 +170,7 @@ class MainDisplay extends Component {
 			}
 
 			const parsedResponse = await response.json()
-			console.log(parsedResponse);
+			//console.log(parsedResponse);
 
 			// remove embedded html from artist description
 			const description = parsedResponse.info.artist.bio.summary.split(' <a')[0]

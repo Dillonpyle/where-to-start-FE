@@ -17,7 +17,8 @@ class App extends Component {
       showLogin: false,
       showRegister: false,
       message: '',
-      displayMessage: false
+      displayMessage: false,
+      userId: ''
     }
   }
 
@@ -27,7 +28,8 @@ class App extends Component {
     this.setState({
       loggedIn: loggedIn,
       username: data.username,
-      displayMessage: false
+      displayMessage: false,
+      userId: data._id
     })
     this.toggleLogin()
   }
@@ -35,10 +37,12 @@ class App extends Component {
   register = (loggedIn, data) => {
     console.log('login was called');
     console.log('value of loggedIn', loggedIn);
+    console.log('this is data', data);
     this.setState({
       loggedIn: loggedIn,
       username: data.username,
-      displayMessage: false
+      displayMessage: false,
+      userId: data._id
     })
     this.toggleRegister()
   }
@@ -59,6 +63,7 @@ class App extends Component {
     this.setState({
       loggedIn: parsedResponse.loggedIn,
       username: '',
+      userId: '',
       message: parsedResponse.message,
       displayMessage: true
     })

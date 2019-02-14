@@ -16,12 +16,18 @@ class CreateNewList extends Component {
 
 	handleChange = (e) => {
 		this.setState({
-			[e.target.name]: e.target.value
+			[e.target.name]: e.target.value,
 		})
 	}
 
 	addList = async (e) => {
 		e.preventDefault()
+		this.setState({
+			user: this.props.userInfo.username,
+			userId: this.props.userInfo.userId
+		})
+
+		console.log(this.state);
 
 		//console.log('addList was called with name', this.state.listName);
 
@@ -31,7 +37,7 @@ class CreateNewList extends Component {
 	      "Content-Type": "application/json",
 	    },
 	    credentials: 'include',
-	    body: JSON.stringify({name: this.state.listName}), // body data type must match "Content-Type" header
+	    body: JSON.stringify(this.state), // body data type must match "Content-Type" header
 	  })
 
 	  if (!newList.ok) {
@@ -52,6 +58,7 @@ class CreateNewList extends Component {
 
 
 	render () {
+		//console.log('userInfo on CreateNewList',this.props.userInfo);
 		return (
 			<div>
 				<form onSubmit={this.addList}>
