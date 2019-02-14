@@ -16,8 +16,8 @@ class App extends Component {
       username: '',
       showLogin: false,
       showRegister: false,
-      message: '',
-      displayMessage: false,
+      message: 'Login to create lists of artists',
+      displayMessage: true,
       userId: ''
     }
   }
@@ -64,7 +64,7 @@ class App extends Component {
       loggedIn: parsedResponse.loggedIn,
       username: '',
       userId: '',
-      message: parsedResponse.message,
+      message: 'Login to create lists of artists',
       displayMessage: true
     })
   }
@@ -114,8 +114,8 @@ class App extends Component {
     return (
       <div className="App">
         <nav>
-          {this.state.loggedIn ? null : <h4>Login to create lists of artists</h4>}
-          {this.state.displayMessage ? <h3>{this.state.message}</h3> : null}
+          {/*this.state.loggedIn ? null : <h4>Login to create lists of artists</h4>*/}
+          {this.state.displayMessage ? <h4>{this.state.message}</h4> : null}
           {this.state.loggedIn ? null : <button onClick={this.toggleLogin.bind(null)}>Login</button>}
           {this.state.loggedIn ? null : <button onClick={this.toggleRegister.bind(null)}>Register</button>}
           {this.state.loggedIn ? <button onClick={this.logout.bind(null)}>Logout</button> : null}

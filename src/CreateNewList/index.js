@@ -7,10 +7,8 @@ class CreateNewList extends Component {
 		super ()
 
 		this.state = {
-			user: '',
 			displayModal: false,
 			listName: '',
-			userId: '',
 		}
 	}
 
@@ -22,10 +20,6 @@ class CreateNewList extends Component {
 
 	addList = async (e) => {
 		e.preventDefault()
-		this.setState({
-			user: this.props.userInfo.username,
-			userId: this.props.userInfo.userId
-		})
 
 		console.log(this.state);
 
@@ -37,7 +31,11 @@ class CreateNewList extends Component {
 	      "Content-Type": "application/json",
 	    },
 	    credentials: 'include',
-	    body: JSON.stringify(this.state), // body data type must match "Content-Type" header
+	    body: JSON.stringify({
+    		user: this.props.userInfo.username,
+				userId: this.props.userInfo.userId,
+				name: this.state.listName
+	    }), // body data type must match "Content-Type" header
 	  })
 
 	  if (!newList.ok) {
