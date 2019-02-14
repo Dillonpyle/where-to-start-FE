@@ -5,7 +5,7 @@ const ArtistListDisplayModal = (props) => {
 	//console.log(props);
 	const allArtistLists = props.lists.map((list) => {
 		//console.log(list);
-		console.log(props.artistName);
+		//console.log(props.artistName);
 		return (		
 			<li key={list._id}>
 				<span>{list.name}

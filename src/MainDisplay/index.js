@@ -37,7 +37,14 @@ class MainDisplay extends Component {
 
 		try {
 			// need to call db for all lists and display them in modal
-			const response = await fetch ('http://localhost:9000/api/v1/artist-list')
+			const response = await fetch ('http://localhost:9000/api/v1/artist-list',{
+				method: 'POST',
+				headers: {
+					"Content-Type": "application/json",
+				},
+				credentials: 'include',
+				body: JSON.stringify({userId: this.props.userInfo.userId})
+			})
 
 			if (!response.ok) {
 				throw Error (response.statusText)
@@ -209,7 +216,7 @@ class MainDisplay extends Component {
 				<Search searchArtist={this.searchArtist}/>
 				{//this.props.userInfo.loggedIn ? <CreateNewList /> : null}
 				}{this.props.userInfo.loggedIn ? <ShowLists showLists={this.showLists}/> : null}
-				{this.state.showLists ? <ArtistListDisplayModal artistName={this.state.artistName} lists={this.state.lists} userInfo={this.props.userInfo} deleteList={this.deleteList} showLists={this.showLists} addToList={this.addToList} removeFromList={this.removeFromList} closeModal={this.closeModal}/> : null}
+				{this.state.showLists && this.props.userInfo.loggedIn ? <ArtistListDisplayModal artistName={this.state.artistName} lists={this.state.lists} userInfo={this.props.userInfo} deleteList={this.deleteList} showLists={this.showLists} addToList={this.addToList} removeFromList={this.removeFromList} closeModal={this.closeModal}/> : null}
 				{this.state.artistName ? <SearchResults artist={this.state}/> : null}
 			</div>
 
