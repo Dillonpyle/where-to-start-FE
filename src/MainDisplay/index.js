@@ -133,7 +133,7 @@ class MainDisplay extends Component {
 				throw Error (response.statusText)
 			}
 
-			const parsedResponse = await response.json()
+			//const parsedResponse = await response.json()
 			//console.log(parsedResponse);
 
 			this.showLists()

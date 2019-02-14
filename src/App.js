@@ -113,15 +113,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Band Crackr</h1>
-        <h3>Crack into your next favorite artist</h3>
-        {this.state.loggedIn ? null : <h4>Login to create lists of artists</h4>}
-        {this.state.displayMessage ? <h3>{this.state.message}</h3> : null}
-        {this.state.loggedIn ? null : <button onClick={this.toggleLogin.bind(null)}>Login</button>}
-        {this.state.loggedIn ? null : <button onClick={this.toggleRegister.bind(null)}>Register</button>}
-        {this.state.loggedIn ? <button onClick={this.logout.bind(null)}>Logout</button> : null}
-        {this.state.showLogin ? <Login login={this.login} displayMessage={this.displayMessage}/> : null}
-        {this.state.showRegister ? <Register register={this.register}/> : null}
+        <nav>
+          {this.state.loggedIn ? null : <h4>Login to create lists of artists</h4>}
+          {this.state.displayMessage ? <h3>{this.state.message}</h3> : null}
+          {this.state.loggedIn ? null : <button onClick={this.toggleLogin.bind(null)}>Login</button>}
+          {this.state.loggedIn ? null : <button onClick={this.toggleRegister.bind(null)}>Register</button>}
+          {this.state.loggedIn ? <button onClick={this.logout.bind(null)}>Logout</button> : null}
+          {this.state.showLogin ? <Login login={this.login} displayMessage={this.displayMessage}/> : null}
+          {this.state.showRegister ? <Register register={this.register}/> : null}
+        </nav>
+        <header>
+          <h1>Band Crackr</h1>
+          <h3>Crack into your next favorite artist</h3>
+        </header>
         <MainDisplay userInfo={this.state} />
       </div>
     );
