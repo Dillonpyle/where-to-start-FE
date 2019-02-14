@@ -43,9 +43,7 @@ class Register extends Component {
 				console.log('you have logged in');
 			}
 
-
-
-
+			this.props.login(parsedResponse.loggedIn, parsedResponse.data)
 
 		} catch (err) {
 			console.log(err)

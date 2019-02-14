@@ -14,6 +14,8 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       username: '',
+      showLogin: false,
+      showRegister: false
     }
   }
 
@@ -26,13 +28,45 @@ class App extends Component {
     })
   }
 
+  toggleLogin = (e) => {
+    e.preventDefault()
+    console.log('showLogin was called');
+    if (this.state.showLogin === false) {
+      this.setState({
+        showLogin: true,
+      })  
+    } else {
+      this.setState({
+        showLogin: false
+      })
+    }
+  }
+
+  toggleRegister = (e) => {
+    e.preventDefault()
+    console.log('showRegister was called');
+    if (this.state.showRegister === false) {
+      this.setState({
+        showRegister: true,
+      })  
+    } else {
+      this.setState({
+        showRegister: false
+      })
+    }
+  }
+
 
   render() {
     return (
       <div className="App">
         <h1>Band Crackr</h1>
         <h3>Crack into your next favorite artist</h3>
-        {this.state.loggedIn ? null : <div><Login login={this.login}/><Register login={this.login}/></div>}
+        <h4>Login to create lists of artists</h4>
+        <button onClick={this.toggleLogin.bind(null)}>Login</button>
+        <button onClick={this.toggleRegister.bind(null)}>Register</button>
+        {this.state.showLogin ? <Login login={this.login}/> : null}
+        {this.state.showRegister ? <Register login={this.login}/> : null}
         <ArtistSearch userInfo={this.state} />
       </div>
     );
