@@ -16,7 +16,8 @@ class App extends Component {
       username: '',
       showLogin: false,
       showRegister: false,
-      message: ''
+      message: '',
+      displayMessage: false
     }
   }
 
@@ -25,12 +26,16 @@ class App extends Component {
     console.log('value of loggedIn', loggedIn);
     this.setState({
       loggedIn: loggedIn,
-      username: data.username
+      username: data.username,
+      displayMessage: false
     })
+    this.toggleLogin()
   }
 
   toggleLogin = (e) => {
-    e.preventDefault()
+    if (e) {
+      e.preventDefault() 
+    }
     console.log('showLogin was called');
     if (this.state.showLogin === false) {
       this.setState({
@@ -57,16 +62,25 @@ class App extends Component {
     }
   }
 
+  displayMessage = (message) => {
+    console.log('displayMessage was called');
+    this.setState({
+      displayMessage: true,
+      message: message
+    })
+  }
+
 
   render() {
     return (
       <div className="App">
         <h1>Band Crackr</h1>
         <h3>Crack into your next favorite artist</h3>
-        <h4>Login to create lists of artists</h4>
-        <button onClick={this.toggleLogin.bind(null)}>Login</button>
-        <button onClick={this.toggleRegister.bind(null)}>Register</button>
-        {this.state.showLogin ? <Login login={this.login}/> : null}
+        {this.state.loggedIn ? null : <h4>Login to create lists of artists</h4>}
+        {this.state.displayMessage ? <h3>{this.state.message}</h3> : null}
+        {this.state.loggedIn ? null : <button onClick={this.toggleLogin.bind(null)}>Login</button>}
+        {this.state.loggedIn ? null : <button onClick={this.toggleRegister.bind(null)}>Register</button>}
+        {this.state.showLogin ? <Login login={this.login} displayMessage={this.displayMessage}/> : null}
         {this.state.showRegister ? <Register login={this.login}/> : null}
         <MainDisplay userInfo={this.state} />
       </div>

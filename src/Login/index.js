@@ -37,14 +37,14 @@ class Login extends Component {
 
 			const parsedResponse = await loginResponse.json()
 
-			// console.log(parsedResponse, ' this is login response from express api');
+			if (parsedResponse.data === null) {
+				this.props.displayMessage(parsedResponse.message)
+			} else {
+				this.props.login(parsedResponse.loggedIn, parsedResponse.data)		
+			}
 
-			// if (parsedResponse.data === "login successful") {
-			// 	console.log('you have logged in');
-			// }
 
-			this.props.login(parsedResponse.loggedIn, parsedResponse.data)
-			
+
 		} catch (err) {
 			console.log(err)
 		}
