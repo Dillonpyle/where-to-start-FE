@@ -19,10 +19,11 @@ class Register extends Component {
 
 	handleSubmit = async (e) => {
 		e.preventDefault()
-		//console.log('handleSubmit was called');
-		
+		//console.log('handleSubmit was called')
+
+		//console.log('REACT_APP_API_URL', process.env.REACT_APP_API_URL);
 		try {
-			const response = await fetch('http://localhost:9000/auth/register', {
+			const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/register`, {
 				method: 'POST',
 				credentials: 'include',
 				body: JSON.stringify(this.state),
@@ -35,6 +36,7 @@ class Register extends Component {
 				throw Error (response.statusText)
 			}
 
+
 			const parsedResponse = await response.json()
 
 			// console.log(parsedResponse, ' this is login response from express api');
@@ -42,8 +44,13 @@ class Register extends Component {
 			// if (parsedResponse.data === "login successful") {
 			// 	console.log('you have logged in');
 			// }
+			console.log(parsedResponse.message);
 
-			this.props.register(parsedResponse.loggedIn, parsedResponse.data)
+			if (parsedResponse.data === null) {
+				this.props.displayMessage(parsedResponse.message)
+			} else {
+				this.props.register(parsedResponse.loggedIn, parsedResponse.data)
+			}
 
 		} catch (err) {
 			console.log(err)

@@ -25,7 +25,7 @@ class CreateNewList extends Component {
 
 		//console.log('addList was called with name', this.state.listName);
 
-		const newList = await fetch('http://localhost:9000/api/v1/artist-list/new', {
+		const newList = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/artist-list/new`, {
 	    method: "POST", // *GET, POST, PUT, DELETE, etc.
 	    headers: {
 	      "Content-Type": "application/json",

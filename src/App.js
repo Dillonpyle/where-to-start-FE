@@ -3,6 +3,7 @@ import './App.css';
 import Login from './Login'
 import Register from './Register'
 import MainDisplay from './MainDisplay'
+require('dotenv').config()
 // import CreateNewList from './CreateNewList'
 // import AuthContainer from './AuthContainer'
 
@@ -51,7 +52,7 @@ class App extends Component {
     e.preventDefault()
     //console.log('logout was called');
 
-    const response = await fetch('http://localhost:9000/auth/logout')
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/logout`)
 
     if (!response.ok) {
       throw Error (response.statusText)
@@ -120,7 +121,7 @@ class App extends Component {
           {this.state.loggedIn ? null : <button onClick={this.toggleRegister.bind(null)}>Register</button>}
           {this.state.loggedIn ? <button onClick={this.logout.bind(null)}>Logout</button> : null}
           {this.state.showLogin ? <Login login={this.login} displayMessage={this.displayMessage}/> : null}
-          {this.state.showRegister ? <Register register={this.register}/> : null}
+          {this.state.showRegister ? <Register register={this.register} displayMessage={this.displayMessage}/> : null}
         </nav>
         <header>
           <h1>Band Crackr</h1>

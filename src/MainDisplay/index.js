@@ -37,7 +37,7 @@ class MainDisplay extends Component {
 
 		try {
 			// need to call db for all lists and display them in modal
-			const response = await fetch ('http://localhost:9000/api/v1/artist-list',{
+			const response = await fetch (`${process.env.REACT_APP_API_URL}/api/v1/artist-list`,{
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json",
@@ -69,7 +69,7 @@ class MainDisplay extends Component {
 		// push artist into list based on lists id
 		//router.put('/:listId/:artistId', async (req, res) => {
 		try {
-			const response = await fetch (`http://localhost:9000/api/v1/artist-list/${listId}`, {
+			const response = await fetch (`${process.env.REACT_APP_API_URL}/api/v1/artist-list/${listId}`, {
 				method: 'PUT',
 				headers: {
 					"Content-Type": "application/json",
@@ -99,7 +99,7 @@ class MainDisplay extends Component {
 		//console.log('deleteList was called');
 
 		try {
-			const response = await fetch (`http://localhost:9000/api/v1/artist-list/${listId}`, {
+			const response = await fetch (`${process.env.REACT_APP_API_URL}/api/v1/artist-list/${listId}`, {
 				method: 'DELETE',
 				headers: {
 					"Content-Type": "application/json",
@@ -127,7 +127,7 @@ class MainDisplay extends Component {
 		// console.log(artistId);
 		// console.log(listId);
 		try {
-			const response = await fetch (`http://localhost:9000/api/v1/artist-list/${listId}/${artistId}/delete`, {
+			const response = await fetch (`${process.env.REACT_APP_API_URL}/api/v1/artist-list/${listId}/${artistId}/delete`, {
 				method: 'PUT',
 				headers: {
 					"Content-Type": "application/json",
@@ -163,7 +163,7 @@ class MainDisplay extends Component {
 		//console.log(query);
 
 		try {
-			const response = await fetch ('http://localhost:9000/api/v1/artist', {
+			const response = await fetch (`${process.env.REACT_APP_API_URL}/api/v1/artist`, {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json",
