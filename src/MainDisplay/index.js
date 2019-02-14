@@ -209,7 +209,7 @@ class MainDisplay extends Component {
 				<Search searchArtist={this.searchArtist}/>
 				{this.props.userInfo.loggedIn ? <CreateNewList /> : null}
 				{this.props.userInfo.loggedIn ? <ShowLists showLists={this.showLists}/> : null}
-				{this.state.showLists ? <ArtistListDisplayModal lists={this.state.lists} deleteList={this.deleteList} addToList={this.addToList} removeFromList={this.removeFromList} closeModal={this.closeModal}/> : null}
+				{this.state.showLists ? <ArtistListDisplayModal lists={this.state.lists} userInfo={this.props.userInfo} deleteList={this.deleteList} addToList={this.addToList} removeFromList={this.removeFromList} closeModal={this.closeModal}/> : null}
 				{this.state.artistName ? <SearchResults artist={this.state}/> : null}
 			</div>
 

@@ -32,6 +32,38 @@ class App extends Component {
     this.toggleLogin()
   }
 
+  register = (loggedIn, data) => {
+    console.log('login was called');
+    console.log('value of loggedIn', loggedIn);
+    this.setState({
+      loggedIn: loggedIn,
+      username: data.username,
+      displayMessage: false
+    })
+    this.toggleRegister()
+  }
+
+  logout = async (e) => {
+    e.preventDefault()
+    console.log('logout was called');
+
+    const response = await fetch('http://localhost:9000/auth/logout')
+
+    if (!response.ok) {
+      throw Error (response.statusText)
+    }
+
+    const parsedResponse = await response.json()
+    console.log(parsedResponse);
+
+    this.setState({
+      loggedIn: parsedResponse.loggedIn,
+      username: '',
+      message: parsedResponse.message,
+      displayMessage: true
+    })
+  }
+
   toggleLogin = (e) => {
     if (e) {
       e.preventDefault() 
@@ -49,7 +81,9 @@ class App extends Component {
   }
 
   toggleRegister = (e) => {
-    e.preventDefault()
+    if (e) {
+      e.preventDefault()
+    }
     console.log('showRegister was called');
     if (this.state.showRegister === false) {
       this.setState({
@@ -80,8 +114,9 @@ class App extends Component {
         {this.state.displayMessage ? <h3>{this.state.message}</h3> : null}
         {this.state.loggedIn ? null : <button onClick={this.toggleLogin.bind(null)}>Login</button>}
         {this.state.loggedIn ? null : <button onClick={this.toggleRegister.bind(null)}>Register</button>}
+        {this.state.loggedIn ? <button onClick={this.logout.bind(null)}>Logout</button> : null}
         {this.state.showLogin ? <Login login={this.login} displayMessage={this.displayMessage}/> : null}
-        {this.state.showRegister ? <Register login={this.login}/> : null}
+        {this.state.showRegister ? <Register register={this.register}/> : null}
         <MainDisplay userInfo={this.state} />
       </div>
     );

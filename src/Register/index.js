@@ -37,13 +37,13 @@ class Register extends Component {
 
 			const parsedResponse = await response.json()
 
-			console.log(parsedResponse, ' this is login response from express api');
+			// console.log(parsedResponse, ' this is login response from express api');
 
-			if (parsedResponse.data === "login successful") {
-				console.log('you have logged in');
-			}
+			// if (parsedResponse.data === "login successful") {
+			// 	console.log('you have logged in');
+			// }
 
-			this.props.login(parsedResponse.loggedIn, parsedResponse.data)
+			this.props.register(parsedResponse.loggedIn, parsedResponse.data)
 
 		} catch (err) {
 			console.log(err)
