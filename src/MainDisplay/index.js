@@ -5,7 +5,7 @@ import ShowLists from '../ShowLists'
 import ArtistListDisplayModal from '../ArtistListDisplayModal'
 // import Login from '../Login'
 // import Register from '../Register'
-import CreateNewList from '../CreateNewList'
+//import CreateNewList from '../CreateNewList'
 
 class MainDisplay extends Component {
 	constructor () {
@@ -207,9 +207,9 @@ class MainDisplay extends Component {
 		return (
 			<div>
 				<Search searchArtist={this.searchArtist}/>
-				{this.props.userInfo.loggedIn ? <CreateNewList /> : null}
-				{this.props.userInfo.loggedIn ? <ShowLists showLists={this.showLists}/> : null}
-				{this.state.showLists ? <ArtistListDisplayModal lists={this.state.lists} userInfo={this.props.userInfo} deleteList={this.deleteList} addToList={this.addToList} removeFromList={this.removeFromList} closeModal={this.closeModal}/> : null}
+				{//this.props.userInfo.loggedIn ? <CreateNewList /> : null}
+				}{this.props.userInfo.loggedIn ? <ShowLists showLists={this.showLists}/> : null}
+				{this.state.showLists ? <ArtistListDisplayModal lists={this.state.lists} userInfo={this.props.userInfo} deleteList={this.deleteList} showLists={this.showLists} addToList={this.addToList} removeFromList={this.removeFromList} closeModal={this.closeModal}/> : null}
 				{this.state.artistName ? <SearchResults artist={this.state}/> : null}
 			</div>
 

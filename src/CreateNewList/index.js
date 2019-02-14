@@ -35,8 +35,8 @@ class CreateNewList extends Component {
 	  })
 
 	  if (!newList.ok) {
-				throw Error(newList.statusText)
-			}
+			throw Error(newList.statusText)
+		}
 
 	  //const newListParsed = await newList.json()
 	  //console.log(newListParsed);
@@ -44,6 +44,9 @@ class CreateNewList extends Component {
 	  this.setState({
 	  	listName: ''
 	  })
+
+	  this.props.showLists()
+
 	}
 
 
