@@ -22,7 +22,7 @@ const ArtistListDisplayModal = (props) => {
 	
 
 	return (
-		<div>
+		<div className="center">
 			<button onClick={props.closeModal.bind(null)}>X</button>
 			{props.userInfo.loggedIn ? <CreateNewList showLists={props.showLists} userInfo={props.userInfo}/> : null}
 			<ul>

@@ -17,11 +17,10 @@ class Search extends Component {
 
 	render () {
 		return (
-			<form onSubmit={this.props.searchArtist.bind(null, this.state.searchArtist)}>
-				<label>
-					Artist:
-					<input name="searchArtist" placeholder='search an artist' value={this.state.searchArtist} onChange={this.handleChange} />
-				</label>
+			<form className="flex-row" onSubmit={this.props.searchArtist.bind(null, this.state.searchArtist)}>
+				
+					<input className="right" name="searchArtist" placeholder='Enter artist name...' value={this.state.searchArtist} onChange={this.handleChange} />
+			
 				<button type="Submit">Search Artist</button>
 			</form>
 

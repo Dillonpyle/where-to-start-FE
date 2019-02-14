@@ -58,7 +58,7 @@ class CreateNewList extends Component {
 	render () {
 		//console.log('userInfo on CreateNewList',this.props.userInfo);
 		return (
-			<div>
+			<div className="center">
 				<form onSubmit={this.addList}>
 					<input type="text" name="listName" placeholder="Name of playlist..." value={this.state.listName} onChange={this.handleChange}/>
 					<button type="Submit">Create Artist List</button>

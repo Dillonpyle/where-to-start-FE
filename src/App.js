@@ -78,6 +78,7 @@ class App extends Component {
     if (this.state.showLogin === false) {
       this.setState({
         showLogin: true,
+        showRegister: false
       })  
     } else {
       this.setState({
@@ -94,6 +95,7 @@ class App extends Component {
     if (this.state.showRegister === false) {
       this.setState({
         showRegister: true,
+        showLogin: false
       })  
     } else {
       this.setState({
@@ -113,18 +115,22 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <nav>
-          {/*this.state.loggedIn ? null : <h4>Login to create lists of artists</h4>*/}
-          {this.state.displayMessage ? <h4>{this.state.message}</h4> : null}
-          {this.state.loggedIn ? null : <button onClick={this.toggleLogin.bind(null)}>Login</button>}
-          {this.state.loggedIn ? null : <button onClick={this.toggleRegister.bind(null)}>Register</button>}
-          {this.state.loggedIn ? <button onClick={this.logout.bind(null)}>Logout</button> : null}
-          {this.state.showLogin ? <Login login={this.login} displayMessage={this.displayMessage}/> : null}
-          {this.state.showRegister ? <Register register={this.register} displayMessage={this.displayMessage}/> : null}
-        </nav>
-        <header>
-          <h1>Band Crackr</h1>
+      <div className="appContainer center">
+        <header className="center">
+          <nav>
+            <div className="left">
+              <h1>Band Crackr</h1> 
+            </div>
+            <div className="right flex-row">
+              {this.state.displayMessage ? <h4 className="right">{this.state.message}</h4> : null}
+              {this.state.loggedIn ? null : <button className="right" onClick={this.toggleLogin.bind(null)}>Login</button>}
+              {this.state.loggedIn ? null : <button onClick={this.toggleRegister.bind(null)}>Register</button>}
+              {this.state.loggedIn ? <button onClick={this.logout.bind(null)}>Logout</button> : null}
+            </div>
+          </nav>
+            {this.state.showLogin ? <Login login={this.login} displayMessage={this.displayMessage}/> : null}
+            {this.state.showRegister ? <Register register={this.register} displayMessage={this.displayMessage}/> : null}
+          
           <h3>Crack into your next favorite artist</h3>
         </header>
         <MainDisplay userInfo={this.state} />

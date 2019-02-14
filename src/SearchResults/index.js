@@ -3,10 +3,12 @@ import React from 'react'
 const SearchResults = (props) => {
 	//console.log(props);
 	return (
-		<div>
+		<div className="center max-width">
 			<h1>{props.artist.artistName}</h1>
+			
 			<img alt="Artist" src={props.artist.image} />
 			<p>{props.artist.description}</p>
+		
 			<h2>Start with this Album:<br /> {props.artist.topAlbum}</h2>
 			<img alt="Album" src={props.artist.topAlbumImg} />
 			<h2>Start with these Songs:</h2>
