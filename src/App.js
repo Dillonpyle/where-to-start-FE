@@ -23,8 +23,8 @@ class App extends Component {
   }
 
   login = (loggedIn, data) => {
-    console.log('login was called');
-    console.log('value of loggedIn', loggedIn);
+    // console.log('login was called');
+    // console.log('value of loggedIn', loggedIn);
     this.setState({
       loggedIn: loggedIn,
       username: data.username,
@@ -35,9 +35,9 @@ class App extends Component {
   }
 
   register = (loggedIn, data) => {
-    console.log('login was called');
-    console.log('value of loggedIn', loggedIn);
-    console.log('this is data', data);
+    // console.log('login was called');
+    // console.log('value of loggedIn', loggedIn);
+    // console.log('this is data', data);
     this.setState({
       loggedIn: loggedIn,
       username: data.username,
@@ -49,7 +49,7 @@ class App extends Component {
 
   logout = async (e) => {
     e.preventDefault()
-    console.log('logout was called');
+    //console.log('logout was called');
 
     const response = await fetch('http://localhost:9000/auth/logout')
 
@@ -58,7 +58,7 @@ class App extends Component {
     }
 
     const parsedResponse = await response.json()
-    console.log(parsedResponse);
+    //console.log(parsedResponse);
 
     this.setState({
       loggedIn: parsedResponse.loggedIn,
@@ -73,7 +73,7 @@ class App extends Component {
     if (e) {
       e.preventDefault() 
     }
-    console.log('showLogin was called');
+    //console.log('showLogin was called');
     if (this.state.showLogin === false) {
       this.setState({
         showLogin: true,
@@ -89,7 +89,7 @@ class App extends Component {
     if (e) {
       e.preventDefault()
     }
-    console.log('showRegister was called');
+    //console.log('showRegister was called');
     if (this.state.showRegister === false) {
       this.setState({
         showRegister: true,
@@ -102,7 +102,7 @@ class App extends Component {
   }
 
   displayMessage = (message) => {
-    console.log('displayMessage was called');
+    //console.log('displayMessage was called');
     this.setState({
       displayMessage: true,
       message: message

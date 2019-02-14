@@ -19,7 +19,7 @@ class Register extends Component {
 
 	handleSubmit = async (e) => {
 		e.preventDefault()
-		console.log('handleSubmit was called');
+		//console.log('handleSubmit was called');
 		
 		try {
 			const response = await fetch('http://localhost:9000/auth/register', {
