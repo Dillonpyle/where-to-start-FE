@@ -15,11 +15,11 @@ const SearchResults = (props) => {
 				</div>
 				<div>
 					<h2>Start with these Songs:</h2>
-					<span>
+					<div>
 						<h3>The hit: {props.artist.topTrack0}</h3>
 						<h3>A classic: {props.artist.topTrack3}</h3>
 						<h3>A deep cut: {props.artist.topTrack10}</h3>
-					</span>
+					</div>
 				</div>
 			</div>
 			

@@ -212,7 +212,7 @@ class MainDisplay extends Component {
 	render () {
 		//console.log(this.state);
 		return (
-			<div className="center">
+			<div className="center width-100">
 				<Search searchArtist={this.searchArtist}/>
 				{this.props.userInfo.loggedIn && !this.state.showLists ? <ShowLists showLists={this.showLists}/> : null}
 				{this.state.showLists && this.props.userInfo.loggedIn ? <ArtistListDisplayModal artistName={this.state.artistName} lists={this.state.lists} userInfo={this.props.userInfo} deleteList={this.deleteList} showLists={this.showLists} addToList={this.addToList} removeFromList={this.removeFromList} closeModal={this.closeModal}/> : null}

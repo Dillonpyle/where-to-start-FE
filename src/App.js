@@ -128,12 +128,13 @@ class App extends Component {
               {this.state.loggedIn ? <button onClick={this.logout.bind(null)}>Logout</button> : null}
             </div>
           </nav>
-            {this.state.showLogin ? <Login login={this.login} displayMessage={this.displayMessage}/> : null}
-            {this.state.showRegister ? <Register register={this.register} displayMessage={this.displayMessage}/> : null}
-          
-          <h3>Crack into your next favorite artist</h3>
         </header>
-        <MainDisplay userInfo={this.state} />
+        <main className="center">
+          {this.state.showLogin ? <Login login={this.login} displayMessage={this.displayMessage}/> : null}
+          {this.state.showRegister ? <Register register={this.register} displayMessage={this.displayMessage}/> : null}  
+          <h3>Crack into your next favorite artist</h3>
+          <MainDisplay userInfo={this.state} />
+        </main>
       </div>
     );
   }
