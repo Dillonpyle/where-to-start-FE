@@ -135,6 +135,9 @@ class App extends Component {
           <h1>Crack Into A New Band</h1>
           <MainDisplay userInfo={this.state} />
         </main>
+        <footer>
+          <h3>© Sam Brown</h3>
+        </footer>
       </div>
     );
   }
