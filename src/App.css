@@ -58,6 +58,14 @@ h1, h2, h3, h4 {
   color: linen;
 }
 
+h1, h2{
+  font-family: 'Righteous', cursive;
+}
+
+h3, h4, p, li, label, button, input {
+  font-family: 'Roboto', sans-serif;
+}
+
 li {
   color: linen;
 }
