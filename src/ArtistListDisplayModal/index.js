@@ -10,7 +10,7 @@ const ArtistListDisplayModal = (props) => {
 			<div className="list-item width-100 center" key={list._id}>
 				<div className="flex-row align-center">
 					<h2 className="right">{list.name}</h2>
-					{props.artistName ? <button className="right" onClick={props.addToList.bind(null, list._id)}>Add To List</button> : null}
+					{props.artistName ? <button className="right" onClick={props.addToList.bind(null, list._id)}>Add Band</button> : null}
 					<button onClick={props.deleteList.bind(null, list._id)}>Delete List</button>
 				</div>
 				

@@ -3,7 +3,7 @@ import React from 'react'
 const SearchResults = (props) => {
 	console.log(props);
 	return (
-		<div className="center max-width modal">
+		<div className="center results-container modal">
 			<h1>{props.artist.artistName}</h1>
 			
 			<img alt="Artist" src={props.artist.image} />
