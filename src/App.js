@@ -136,7 +136,7 @@ class App extends Component {
           <MainDisplay userInfo={this.state} />
         </main>
         <footer>
-          <h3>© Sam Brown</h3>
+          <h3>Built by Sam Brown | Powered by Last.fm</h3>
         </footer>
       </div>
     );

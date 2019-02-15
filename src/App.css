@@ -30,6 +30,7 @@ main {
   min-height: 100vh;
   padding-bottom: 20px;
   border: 2px solid black;
+  max-width: 1000px;
 }
 
 p {
