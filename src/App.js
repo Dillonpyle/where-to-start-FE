@@ -132,7 +132,7 @@ class App extends Component {
         <main className="center">
           {this.state.showLogin ? <Login login={this.login} displayMessage={this.displayMessage}/> : null}
           {this.state.showRegister ? <Register register={this.register} displayMessage={this.displayMessage}/> : null}  
-          <h3>Crack into your next favorite artist</h3>
+          <h1>Find Your Next Favorite Band</h1>
           <MainDisplay userInfo={this.state} />
         </main>
       </div>
