@@ -49,6 +49,10 @@ button {
   font-weight: bold;
 }
 
+button:hover {
+  background-color: rgb(191, 191, 191);
+}
+
 input {
   height: 23px;
   width: 30vw;
