@@ -36,6 +36,7 @@ p {
   max-width: 800px;
   padding: 20px;
   color: linen;
+  font-size: 19px;
 
 }
 
@@ -72,6 +73,7 @@ li {
 
 label {
   font-weight: bold;
+  color: linen;
 }
 
 ul {
@@ -178,7 +180,7 @@ ul {
   padding-bottom: 0;
 }
 
-.suggestion-container {
+.modal {
   background-color: rgba(82, 103, 122, .6);
   border: 2px solid black;
   padding: 20px;

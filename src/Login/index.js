@@ -55,7 +55,7 @@ class Login extends Component {
 
 	render () {
 		return (
-			<div className="center">
+			<div className="center modal">
 				<h1>Login</h1>
 
 				<form className="center" onSubmit={this.handleSubmit}>

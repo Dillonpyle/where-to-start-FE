@@ -3,11 +3,11 @@ import React from 'react'
 const SearchResults = (props) => {
 	console.log(props);
 	return (
-		<div className="center max-width suggestion-container">
+		<div className="center max-width modal">
 			<h1>{props.artist.artistName}</h1>
 			
 			<img alt="Artist" src={props.artist.image} />
-			<p>{props.artist.description}</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;{props.artist.description}</p>
 			<div className="around-row width-100 ">
 				<div>
 					<h2 className="album-header">Start with this Album</h2>
