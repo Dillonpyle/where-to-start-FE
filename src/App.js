@@ -4,8 +4,6 @@ import Login from './Login'
 import Register from './Register'
 import MainDisplay from './MainDisplay'
 require('dotenv').config()
-// import CreateNewList from './CreateNewList'
-// import AuthContainer from './AuthContainer'
 
 
 class App extends Component {
@@ -24,33 +22,31 @@ class App extends Component {
   }
 
   login = (loggedIn, data) => {
-    // console.log('login was called');
-    // console.log('value of loggedIn', loggedIn);
+
     this.setState({
       loggedIn: loggedIn,
       username: data.username,
       displayMessage: false,
       userId: data._id
     })
+
     this.toggleLogin()
   }
 
   register = (loggedIn, data) => {
-    // console.log('login was called');
-    // console.log('value of loggedIn', loggedIn);
-    // console.log('this is data', data);
+
     this.setState({
       loggedIn: loggedIn,
       username: data.username,
       displayMessage: false,
       userId: data._id
     })
+
     this.toggleRegister()
   }
 
   logout = async (e) => {
     e.preventDefault()
-    //console.log('logout was called');
 
     const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/logout`)
 
@@ -59,7 +55,6 @@ class App extends Component {
     }
 
     const parsedResponse = await response.json()
-    //console.log(parsedResponse);
 
     this.setState({
       loggedIn: parsedResponse.loggedIn,
@@ -74,7 +69,7 @@ class App extends Component {
     if (e) {
       e.preventDefault() 
     }
-    //console.log('showLogin was called');
+
     if (this.state.showLogin === false) {
       this.setState({
         showLogin: true,
@@ -91,7 +86,7 @@ class App extends Component {
     if (e) {
       e.preventDefault()
     }
-    //console.log('showRegister was called');
+
     if (this.state.showRegister === false) {
       this.setState({
         showRegister: true,
@@ -105,7 +100,7 @@ class App extends Component {
   }
 
   displayMessage = (message) => {
-    //console.log('displayMessage was called');
+
     this.setState({
       displayMessage: true,
       message: message
@@ -119,7 +114,7 @@ class App extends Component {
         <header className="center">
           <nav>
             <div className="left">
-              <h1>Band Crackr</h1> 
+              <h1>BandCrackr</h1> 
             </div>
             <div className="right flex-row align-center">
               {this.state.displayMessage ? <h4 className="right">{this.state.message}</h4> : null}

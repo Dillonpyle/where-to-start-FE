@@ -13,13 +13,11 @@ class Login extends Component {
 	handleChange = (e) => {
 		this.setState ({
 			[e.target.name]: e.target.value
-		})
-		
+		})	
 	}
 
 	handleSubmit = async (e) => {
 		e.preventDefault()
-		//console.log('handleSubmit was called');
 		
 		try {
 			const loginResponse = await fetch(`${process.env.REACT_APP_API_URL}/auth/login`, {
@@ -37,20 +35,16 @@ class Login extends Component {
 
 			const parsedResponse = await loginResponse.json()
 
+			// display error message if login failed
 			if (parsedResponse.data === null) {
 				this.props.displayMessage(parsedResponse.message)
 			} else {
 				this.props.login(parsedResponse.loggedIn, parsedResponse.data)		
 			}
 
-
-
 		} catch (err) {
 			console.log(err)
 		}
-
-
-
 	}
 
 	render () {

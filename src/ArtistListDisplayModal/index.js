@@ -2,10 +2,9 @@ import React from 'react'
 import CreateNewList from '../CreateNewList'
 
 const ArtistListDisplayModal = (props) => {
-	//console.log(props);
+
 	const allArtistLists = props.lists.map((list) => {
-		//console.log(list);
-		//console.log(props.artistName);
+
 		return (		
 			<div className="list-item width-100 center" key={list._id}>
 				<div className="flex-row align-center">
@@ -23,13 +22,8 @@ const ArtistListDisplayModal = (props) => {
 							</div>
 						)}	
 					</ul>
-				</div>
-				
-					
+				</div>					
 			</div>
-
-
-
 		)
 	})
 	
@@ -39,14 +33,11 @@ const ArtistListDisplayModal = (props) => {
 			<div className="modal-exit">
 				<button className="top left"onClick={props.closeModal.bind(null)}>X</button>
 			</div>
-			{props.userInfo.loggedIn ? <CreateNewList showLists={props.showLists} userInfo={props.userInfo}/> : null}<br />
-			
+			{props.userInfo.loggedIn ? <CreateNewList showLists={props.showLists} userInfo={props.userInfo}/> : null}<br />		
 			{allArtistLists}
-			
 		</div>
 
 	)
 }
 
 export default ArtistListDisplayModal
-
