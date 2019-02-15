@@ -9,6 +9,7 @@ nav {
   background-color: gray;
   width: 100vw;
   height: 40px;
+  border-bottom: 2px solid black;
 }
 
 p {
@@ -16,7 +17,11 @@ p {
 }
 
 button {
+  border: 2px solid black;
+  outline: 0;
+  background-color: lightgray;
   height: 28px;
+  font-size: 15px;
 }
 
 input {
@@ -25,10 +30,30 @@ input {
   font-size: 18px;
 }
 
+h1, h2, h3, h4 {
+  text-align: center;
+}
+
+label {
+  font-weight: bold;
+}
+
+ul {
+  margin: 0 auto;
+  padding: 0 auto;
+}
+
 
 .flex-row {
   display: flex;
+}
+
+.align-center {
   align-items: center;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .center {
@@ -49,6 +74,53 @@ input {
   margin-left: 5px;
 }
 
-.artist-image {
-  float: left;
+.top {
+  margin-top: 5px;
 }
+
+.around-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.list-modal {
+  margin-top: 10px;
+  background-color: gray;
+  width: 80vw;
+  padding-bottom: 20px;
+  border: 2px solid black;
+}
+
+.modal-exit {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.list-title {
+  padding: 0;
+  margin: 0 0 5px 0;
+}
+
+.artist-list-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.artist-list-item {
+  min-width: 20vw;
+  margin-right: 5vw;
+}
+
+.delete-artist-button {
+  height: 15px;
+  font-size: 8px;
+  border-radius: 0;
+}
+
+

@@ -7,13 +7,26 @@ const ArtistListDisplayModal = (props) => {
 		//console.log(list);
 		//console.log(props.artistName);
 		return (		
-			<li key={list._id}>
-				<span>{list.name}
-					{props.artistName ? <button onClick={props.addToList.bind(null, list._id)}>Add To List</button> : null}
+			<div className="list-item width-100 center" key={list._id}>
+				<div className="flex-row align-center">
+					<h2 className="right">{list.name}</h2>
+					{props.artistName ? <button className="right" onClick={props.addToList.bind(null, list._id)}>Add To List</button> : null}
 					<button onClick={props.deleteList.bind(null, list._id)}>Delete List</button>
-				</span>
-				{list.artists.map((artist) => <p key={artist.mbid}>{artist.artistName}<button onClick={props.removeFromList.bind(null, artist.mbid, list._id)}>X</button></p>)}		
-			</li>
+				</div>
+				
+				<div className=" width-100">
+					<ul >
+						{list.artists.map((artist) => 
+							<div key={`container${artist.mbid}`} className="artist-list-container">
+								<li className="artist-list-item" key={artist.mbid}>{artist.artistName}</li>
+								<button key={`button${artist.mbid}`} className="delete-artist-button" onClick={props.removeFromList.bind(null, artist.mbid, list._id)}>X</button>
+							</div>
+						)}	
+					</ul>
+				</div>
+				
+					
+			</div>
 
 
 
@@ -22,12 +35,14 @@ const ArtistListDisplayModal = (props) => {
 	
 
 	return (
-		<div className="center">
-			<button onClick={props.closeModal.bind(null)}>X</button>
-			{props.userInfo.loggedIn ? <CreateNewList showLists={props.showLists} userInfo={props.userInfo}/> : null}
-			<ul>
-				{allArtistLists}
-			</ul> 
+		<div className="center list-modal top">
+			<div className="modal-exit">
+				<button className="top left"onClick={props.closeModal.bind(null)}>X</button>
+			</div>
+			{props.userInfo.loggedIn ? <CreateNewList showLists={props.showLists} userInfo={props.userInfo}/> : null}<br />
+			
+			{allArtistLists}
+			
 		</div>
 
 	)

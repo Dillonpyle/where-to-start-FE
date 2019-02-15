@@ -4,8 +4,8 @@ const ShowLists = (props) => {
 
 	
 	return (
-		<form onSubmit={props.showLists}>
-			<button>Show Your Lists</button>
+		<form className="top" onSubmit={props.showLists}>
+			<button>Show Lists</button>
 		</form>
 	)	
 }

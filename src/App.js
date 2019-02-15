@@ -121,7 +121,7 @@ class App extends Component {
             <div className="left">
               <h1>Band Crackr</h1> 
             </div>
-            <div className="right flex-row">
+            <div className="right flex-row align-center">
               {this.state.displayMessage ? <h4 className="right">{this.state.message}</h4> : null}
               {this.state.loggedIn ? null : <button className="right" onClick={this.toggleLogin.bind(null)}>Login</button>}
               {this.state.loggedIn ? null : <button onClick={this.toggleRegister.bind(null)}>Register</button>}
